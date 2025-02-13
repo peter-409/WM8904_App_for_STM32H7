@@ -46,7 +46,7 @@ I2C_HandleTypeDef hi2c2;
 SAI_HandleTypeDef hsai_BlockA1;
 
 /* USER CODE BEGIN PV */
-
+WM8904_Object_t wm8904;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -100,12 +100,23 @@ int main(void)
   MX_SAI1_Init();
   /* USER CODE BEGIN 2 */
 
+  // Initialize the WM8904 codec in loopback mode
+  if (WM8904_InitLoopback(&wm8904) != WM8904_OK) {
+    Error_Handler();
+  }
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    // Toggle LED1
+    HAL_GPIO_TogglePin(GPIOG, LED1_Pin);
+
+    // Delay for 500ms
+    HAL_Delay(500);
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -346,6 +357,10 @@ void Error_Handler(void)
   __disable_irq();
   while (1)
   {
+    // Toggle LED1
+    HAL_GPIO_TogglePin(GPIOG, LED1_Pin);
+    // Delay for 250ms
+    HAL_Delay(250);
   }
   /* USER CODE END Error_Handler_Debug */
 }
