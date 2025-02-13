@@ -21,7 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "../../Drivers/WM8904/wm8904.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
