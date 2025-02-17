@@ -4,5 +4,6 @@
         "wm8904.h": "c",
         "stm32h7xx_hal.h": "c",
         "wm8904_reg.h": "c"
-    }
+    },
+    "C_Cpp.errorSquiggles": "enabled"
 }

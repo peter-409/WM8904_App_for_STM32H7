@@ -232,7 +232,7 @@ static void MX_I2C2_Init(void)
   WM8904_IO_t io_ctx = {
    .Init = NULL,
    .DeInit = NULL,
-   .Address = 0x1A, // WM8904 I2C address
+   .Address = 0x34, // WM8904 I2C address
    .WriteReg = (WM8904_WriteReg_Func)HAL_I2C_Mem_Write,
    .ReadReg = (WM8904_ReadReg_Func)HAL_I2C_Mem_Read,
    .GetTick = HAL_GetTick
