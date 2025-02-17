@@ -22,6 +22,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "../../Drivers/WM8904/wm8904.h"
+#include "../../Drivers/WM8904/wm8904_addon.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -226,6 +227,21 @@ static void MX_I2C2_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN I2C2_Init 2 */
+
+  // Register I2C bus IO functions with WM8904 codec
+  WM8904_IO_t io_ctx = {
+   .Init = NULL,
+   .DeInit = NULL,
+   .Address = 0x1A, // WM8904 I2C address
+   .WriteReg = (WM8904_WriteReg_Func)HAL_I2C_Mem_Write,
+   .ReadReg = (WM8904_ReadReg_Func)HAL_I2C_Mem_Read,
+   .GetTick = HAL_GetTick
+  };
+
+  if (WM8904_RegisterBusIO(&wm8904, &io_ctx) != WM8904_OK)
+  {
+    Error_Handler();
+  }
 
   /* USER CODE END I2C2_Init 2 */
 
